@@ -1,3 +1,4 @@
+#Başlangıç olarak muhtemel engellerden oluşan bir dizi tanımladık.
 engel=[(5,1),(4,6),(2,6),(1,4),(1,8),(8,1),(8,8)]
 
 deger=63
