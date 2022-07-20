@@ -159,20 +159,20 @@ def rookMovement(x,y):
 
 #At için muhtemel hareket koordinatları
 
-at_liste=[i for i in knightMovement(5,4) if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
-print("At :",at_liste)
+knight_movement=[i for i in knightMovement(5,4) if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
+print("At :",knight_movement)
 
 
 #Fil için muhtemel hareket koordinatları
 
-bishopmovement=[i for i in bishopMovement(3,4) if all([ 0<i[0]<9 , 0<i[1]<9 ])]
-print("Fil :",bishopmovement)
+bishop_movement=[i for i in bishopMovement(3,4) if all([ 0<i[0]<9 , 0<i[1]<9 ])]
+print("Fil :",bishop_movement)
 
 
 #Şah için muhtemel hareket koordinatları
 
-sah_liste=[i for i in kingMovement(5,4) if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
-print("Sah :",sah_liste)
+king_movement=[i for i in kingMovement(5,4) if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
+print("Sah :",king_movement)
 
 
 
@@ -184,5 +184,5 @@ print("Kale  :",rook_movement)
 
 #Vezir için muhtemel hareket koordinatları
 
-queenMovement=[i for i in QueenMovement(4,2) if all([ 0<i[0]<9 , 0<i[1]<9 ])]
-print("Vezir :",queenMovement)
+queen_movement=[i for i in QueenMovement(4,2) if all([ 0<i[0]<9 , 0<i[1]<9 ])]
+print("Vezir :",queen_movement)
