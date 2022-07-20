@@ -1,7 +1,10 @@
 #Başlangıç olarak muhtemel engellerden oluşan bir dizi tanımladık.
-engel=[(5,1),(4,6),(2,6),(1,4),(1,8),(8,1),(8,8)]
+engel=[(4,5),(4,3),(6,6),(5,5),(4,6)]
 
-deger=63
+
+deger=int(input("Bir değer giriniz:"))
+while(deger<0):
+    deger=int(input("Girdiğiniz değer 0 den büyük olmalıdır.Lütfen tekrar giriniz:"))
 x_ekseni=8
 y_ekseni=8
 
@@ -14,100 +17,172 @@ if deger%y_ekseni==0:
     y_koordinat=int(deger/y_ekseni)
 else: 
     y_koordinat=int(deger/y_ekseni)+1
-
-
 print(x_koordinat)
 print(y_koordinat)
 
 
+
+def knightMovement(x,y):
+    At=[]
+    At.append((x + 2, y - 1))
+    At.append((x + 2, y + 1))
+    At.append((x - 2, y + 1))
+    At.append((x - 2, y - 1))
+    At.append((x + 1, y + 2))
+    At.append((x + 1, y - 2))
+    At.append((x - 1, y + 2))
+    At.append((x - 1, y - 2))     
+    return At
+
+
+
+
+def kingMovement(x,y):
+    sah=[]
+    sah.append((x+1, y))
+    sah.append((x-1, y))
+    sah.append((x+1, y+1))
+    sah.append((x-1, y-1))
+    sah.append((x-1, y+1))
+    sah.append((x+1, y-1))
+    sah.append((x, y+1))
+    sah.append((x, y-1))
+    return sah
+
+
+
+
+def QueenMovement(x,y):
+    vezir=[]
+    for n in range(1,8):
+        if (x+n, y+n) in engel:
+            break
+        else:
+            vezir.append((x+n, y+n))#sağ-üst çapraz
+    for n in range(1,8):
+        if (x-n, y-n) in engel:
+            break
+        else:
+            vezir.append((x-n, y-n))#sol-alt çapraz
+    for n in range(1,8):    
+        if (x+n, y-n) in engel:
+            break
+        else:
+            vezir.append((x+n, y-n))#sağ-alt çapraz
+    for n in range(1,8):   
+        if (x-n, y+n) in engel:
+            break
+        else:
+            vezir.append((x-n, y+n))#sol-üst çapraz
+    for n in range(1,8):
+        if (x, y+n) in engel:
+            break
+        else:
+            vezir.append((x, y+n))#üste doğru hareket
+    for n in range(1,8):
+        if (x, y-n) in engel:
+            break
+        else:
+            vezir.append((x, y-n))#alta doğru hareket
+    for n in range(1,8):
+        if (x+n, y) in engel:
+            break
+        else:
+            vezir.append((x+n, y))#sağa doğru hareket
+    for n in range(1,8):
+        if (x-n, y) in engel:
+            break
+        else:
+            vezir.append((x-n, y))#sola doğru hareket
+
+    return vezir
+
+
+def bishopMovement(x,y):
+
+    fil=[]
+
+    for n in range(1,8):
+        if (x+n, y+n) in engel:
+            break
+        else:
+            fil.append((x+n, y+n))#sağ-üst çapraz
+    for n in range(1,8):
+        if (x-n, y-n) in engel:
+            break
+        else:
+            fil.append((x-n, y-n))#sol-alt çapraz
+    for n in range(1,8):
+        
+        if (x+n, y-n) in engel:
+            break
+        else:
+            fil.append((x+n, y-n))#sağ-alt çapraz
+    for n in range(1,8):
+       
+        if (x-n, y+n) in engel:
+            break
+        else:
+            fil.append((x-n, y+n))#sol-üst çapraz
+    return fil
+
+
+def rookMovement(x,y):
+    kale=[]
+    for n in range(1,8):
+        if (x, y+n) in engel:
+            break
+        else:
+            kale.append((x, y+n))#üste doğru hareket
+    for n in range(1,8):
+        if (x, y-n) in engel:
+            break
+        else:
+            kale.append((x, y-n))#alta doğru hareket
+    for n in range(1,8):
+        if (x+n, y) in engel:
+            break
+        else:
+            kale.append((x+n, y))#sağa doğru hareket
+    for n in range(1,8):
+        if (x-n, y) in engel:
+            break
+        else:
+            kale.append((x-n, y))#sola doğru hareket
+
+    return kale
+
+
+
+
+#Piyon için muhtemel hareketler koordinatları
+
 #At için muhtemel hareket koordinatları
-x=5
-y=4
-At=[]
-At.append((x + 2, y - 1))
-At.append((x + 2, y + 1))
-At.append((x - 2, y + 1))
-At.append((x - 2, y - 1))
-At.append((x + 1, y + 2))
-At.append((x + 1, y - 2))
-At.append((x - 1, y + 2))
-At.append((x - 1, y - 2))
 
-y=[i for i in At if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
-
-
-
-print("At :",y)
+at_liste=[i for i in knightMovement(5,4) if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
+print("At :",at_liste)
 
 
 #Fil için muhtemel hareket koordinatları
 
-x=1
-y=1
-fil=[]
-
-for n in range(1,8):
-    fil.append((x+n, y+n))
-    fil.append((x-n, y-n))
-    fil.append((x-n, y+n))
-    fil.append((x+n, y-n))
+bishopmovement=[i for i in bishopMovement(3,4) if all([ 0<i[0]<9 , 0<i[1]<9 ])]
+print("Fil :",bishopmovement)
 
 
-y1=[i for i in fil if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
-
-print("Fil :",y1)
 #Şah için muhtemel hareket koordinatları
 
-x=5
-y=4
-sah=[]
-sah.append((x+1, y))
-sah.append((x-1, y))
-sah.append((x+1, y+1))
-sah.append((x-1, y-1))
-sah.append((x-1, y+1))
-sah.append((x+1, y-1))
-sah.append((x, y+1))
-sah.append((x, y-1))
+sah_liste=[i for i in kingMovement(5,4) if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
+print("Sah :",sah_liste)
 
-y2=[i for i in sah if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
 
-print("Sah :",y2)
+
 #Kale için muhtemel hareket koordinatları
 
-x=5
-y=4
-
-engel_x=4
-engel_y=4
-
-kale=[]
-for n in range(1,8):
-   
-    kale.append((x, y+n))
-    kale.append((x, y-n))
-    kale.append((x+n, y))
-    kale.append((x-n, y))
-
-y3=[i for i in kale if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
-print("Kale  :",y3)
-
+rook_movement=[i for i in rookMovement(5,4) if all([ 0<i[0]<9 , 0<i[1]<9 ])]
+print("Kale  :",rook_movement)
 
 
 #Vezir için muhtemel hareket koordinatları
-x=1
-y=1
-vezir=[]
-for n in range(1,8):
-    vezir.append((x+n, y+n))
-    vezir.append((x-n, y-n))
-    vezir.append((x-n, y+n))
-    vezir.append((x+n, y-n))
-    vezir.append((x, y+n))
-    vezir.append((x, y-n))
-    vezir.append((x+n, y))
-    vezir.append((x-n, y))
 
-y4=[i for i in vezir if all([ 0<i[0]<9 , 0<i[1]<9 ]) and i not in engel]
-
-print("Vezir :",y4)
+queenMovement=[i for i in QueenMovement(4,2) if all([ 0<i[0]<9 , 0<i[1]<9 ])]
+print("Vezir :",queenMovement)
